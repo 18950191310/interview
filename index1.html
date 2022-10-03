@@ -1,0 +1,49 @@
+
+  <body>
+<input placeholder='请输入账号' />
+<div class="box"></div>
+
+<script>
+// 防抖
+
+let num = document.querySelector('input')
+num.addEventListener('input',antiShake(e, 2000))
+function antiShake(fn, wait){
+  let timeOut = null
+  return args => {
+    if(timeOut) clearTimeout(timeOut)
+    timeOut = setTimeout(fn, wait)
+  }
+}
+function e (){
+  console.log('执行事件');
+}
+function f(){
+  console.log('发起请求');
+}
+
+// 节流
+let box = document.querySelector(".box")
+box.addEventListener("mousemove",throttle(f, 2000)
+)
+function throttle(event, time){
+  let timer = null
+  return function(){
+    if(!timer){
+      timer = setTimeout(()=>{
+        event()
+        timer = null 
+      }, time)
+    }
+  }
+}
+</script>
+<style>
+  .box{
+    background-color: red;
+    height: 300px;
+    weight:300px
+  }
+</style>
+</body>
+
