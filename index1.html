@@ -1,42 +1,194 @@
-
+<!-- 
   <body>
 <input placeholder='请输入账号' />
-<div class="box"></div>
+<div class="box"></div> -->
+<div id="app">hello</div>
 
 <script>
 // 防抖
 
-let num = document.querySelector('input')
-num.addEventListener('input',antiShake(e, 2000))
-function antiShake(fn, wait){
-  let timeOut = null
-  return args => {
-    if(timeOut) clearTimeout(timeOut)
-    timeOut = setTimeout(fn, wait)
-  }
-}
-function e (){
-  console.log('执行事件');
-}
-function f(){
-  console.log('发起请求');
-}
+// let num = document.querySelector('input')
+// num.addEventListener('input',antiShake(e, 2000))
+// function antiShake(fn, wait){
+//   let timeOut = null
+//   return args => {
+//     if(timeOut) clearTimeout(timeOut)
+//     timeOut = setTimeout(fn, wait)
+//   }
+// }
+// function e (){
+//   console.log('执行事件');
+// }
+// function f(){
+//   console.log('发起请求');
+// }
+
+
 
 // 节流
-let box = document.querySelector(".box")
-box.addEventListener("mousemove",throttle(f, 2000)
-)
-function throttle(event, time){
-  let timer = null
+// let box = document.querySelector(".box")
+// box.addEventListener("mousemove",throttle(f, 2000)
+// )
+// function throttle(event, time){
+//   let timer = null
+//   return function(){
+//     if(!timer){
+//       timer = setTimeout(()=>{
+//         event()
+//         timer = null 
+//       }, time)
+//     }
+//   }
+// }
+
+
+
+// vue3响应式原理 引入了外部数据的函数，当外部数据改变时，函数也会执行改变，这就是副作用函数。利用副作用函数原理，定义一个Proxy代理对象并给它赋值
+// function isObject(data){
+//   return typeof data === 'object' && data != null
+// }
+// function reactive(data){
+//   if (!isObject(data)) return
+//   return new Proxy(data,{
+//     get(target, key){
+//       return target[key]
+//     },
+//     set(target, key, value){
+//       target[key] = value
+//       effect()
+//       return true
+//     }
+//   })
+// }
+// const state = reactive({name:'李'})
+// function effect(){
+//   app.innerHTML = state.name
+// }
+// setTimeout(() => {
+//   state.name = '赵'
+// },1000)
+
+let num =document.querySelector('input')
+num.addEventListener('input',antiShake(e,2000))
+function antiShake(fn,wait){
+  let timeOut=null
+  return args=>{
+    if(timeOut) clearTimeout(timeOut)
+    timeOut=setTimeout(fn,wait)
+  }
+}
+
+let box=document.querySelector('.box')
+box.addEventListener('mousemove',throttle(f,2000))
+function throttle(fn,time){
+  let timer=null
   return function(){
     if(!timer){
-      timer = setTimeout(()=>{
-        event()
-        timer = null 
-      }, time)
+      timer=setTimeout(()=>{
+        fn()
+        timer = null
+      },time)
     }
   }
 }
+
+
+
+
+// let b='3+2*{1+2*[-4/(8-6)+7]}'
+// b=b.replace(/\[|{/g,'(').replace(/\]|}/g,')')
+// console.log(eval(b));
+
+
+// let list = []
+// let list1=[1,2,3]
+// list1.push(4)
+// console.log(list1.valueOf());
+// let list2=[2,1,4]
+// list = list1.concat(list2).sort((a, b) => a - b)
+// console.log(list);
+// let c=(a/b).toFixed(1)
+// console.log(c);
+// let a = '12312a,3b'
+// for (let i of a){
+//   console.log(i);
+// }
+// let b='b'
+// console.log(a.indexOf(b));
+// let b = parseInt(a)
+// let c = Number(a)
+// console.log(b,c);
+// let a = '213ds34f2d2d2'
+// let reg=/[a-z]+/g
+// console.log(a.match(reg));
+// let arr = [1,2,3,3,4]
+// let a = 5
+// let b=arr.push(a)
+// console.log(b,arr);
+  // let item = [...new Set(arr)]
+  // console.log(item)
+//   let a = arr
+//   let b = a.filter((current, index, array)=>{
+//     console.log(current, index, array)
+//     return current < 4
+
+//   })
+// console.log(b);
+// let a=[1,2,3]
+// let b = [1,4,5]
+// // let c = Array.from(new Set(a.concat(b)))
+// let c= Array.from('4235235')
+// console.log(c);
+// let a = '1,2,3'
+// console.log(a.substr(0,2))
+// let b = [4,5]
+// let c =a.concat(b)
+// console.log(c);
+// let arr = new Array(3).fill(1)
+// console.log(arr);
+// let a = [123,4567] 
+// // function sorts(m,n){
+// //   return m-n
+// // }
+// console.log(a.sort((m,n)=>{
+//   return m-n
+// }));
+
+// const state = { name:'张'}
+// const n = reactive(state)
+// console.log(n.name);
+// n.name='王'
+// console.log(n.name);
+
+// let a = "1,23456"
+// let reg = /[0-9]/g
+// console.log(a.match(reg).length)
+// let b = []
+// let c= b.push(a)
+
+// console.log(c)
+
+// let b = new Set(a)
+// console.log(b);
+// let s = 'abcde'
+// let a = Array.from(s) 字符串生成數組
+// console.log(a);
+// let s = ['a','b','c']
+// let a = s.toString()
+// console.log(a);
+// for (let a of s){
+//   console.log(a);
+// }
+
+// console.log(s.length)
+// let a = 1
+// let b = a++
+// let c = ++a
+// console.log(b)   1
+// console.log(c);   3
+
+
+
 </script>
 <style>
   .box{
