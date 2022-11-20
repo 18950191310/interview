@@ -1,7 +1,7 @@
 <template>
   <div >  <el-select v-model="value" class="m-2" :placeholder="'请选择'+name" size="large" @change="cha">
     <el-option v-for="item in options" :key="item.name" :name="item.type"
-      :value="item.name+'   '+ item.price+' 元'" :style="{ width: s+'px' }" />
+      :value="item.name+'   '+ item.price+'元'" :style="{ width: s+'px' }" />
   </el-select></div>
 
 
